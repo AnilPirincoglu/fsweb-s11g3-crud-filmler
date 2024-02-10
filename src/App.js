@@ -10,10 +10,11 @@ import FavoriteMovieList from "./components/FavoriteMovieList";
 import EditMovieForm from "./components/EditMovieForm";
 import axios from "axios";
 import AddMovieForm from "./components/AddMovieForm";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 const App = (props) => {
   const [movies, setMovies] = useState([]);
-  const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const [favoriteMovies, setFavoriteMovies] = useLocalStorage([], "favs");
 
   useEffect(() => {
     axios
