@@ -4,7 +4,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 
 const Movie = (props) => {
-  const { addToFavorites } = props;
+  const { addToFavorites, deleteMovie } = props;
 
   const [movie, setMovie] = useState("");
 
@@ -21,6 +21,11 @@ const Movie = (props) => {
         console.log(err.response);
       });
   }, [id]);
+
+  const deleteHandler = () => {
+    deleteMovie(movie.id);
+    push("/");
+  };
 
   return (
     <div className="bg-white rounded-md shadow flex-1">
@@ -60,7 +65,11 @@ const Movie = (props) => {
         >
           Edit
         </Link>
-        <button type="button" className="myButton bg-red-600 hover:bg-red-500">
+        <button
+          onClick={deleteHandler}
+          type="button"
+          className="myButton bg-red-600 hover:bg-red-500"
+        >
           Sil
         </button>
       </div>
