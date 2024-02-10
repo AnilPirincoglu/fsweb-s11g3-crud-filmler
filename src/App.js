@@ -32,6 +32,7 @@ const App = (props) => {
       .delete(`http://localhost:9000/api/movies/${id}`)
       .then((res) => {
         setMovies(res.data);
+        removedFromFavorites(id);
       })
       .catch((err) => {
         console.log(err);
@@ -41,6 +42,10 @@ const App = (props) => {
   const addToFavorites = (movie) => {
     if (favoriteMovies.find((m) => m.id === movie.id)) return;
     setFavoriteMovies([...favoriteMovies, movie]);
+  };
+
+  const removedFromFavorites = (id) => {
+    setFavoriteMovies(favoriteMovies.filter((m) => m.id !== id));
   };
 
   return (
